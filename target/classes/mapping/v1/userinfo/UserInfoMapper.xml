@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sjt.cdmapi.dao.v1.UserInfoServiceDao">
+	<resultMap id="UserInfoResultMap" type="com.sjt.cdmapi.domain.v1.UserInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="openfire_user" property="openfireUser" jdbcType="VARCHAR" />
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+		<result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="VARCHAR" />
+		<result column="bind_type" property="bindType" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getUserInfoById" resultMap="UserInfoResultMap">
+			select info.id,info.nickname,info.avatar,info.openfire_user,info.device_id,
+			info.user_status,info.user_type,'test'  as bind_type
+			from user_info info 
+			where info.is_available = '1' 
+			and info.id = #{userId}
+	</select>
+	
+</mapper>
